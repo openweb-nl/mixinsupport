@@ -16,13 +16,20 @@ public class ProxyFactory {
 			.getComponentManager().getComponent(
 					MixinInterfaceScannerService.class.getName());
 
-	public HippoBean getProxy(HippoBean bean, ClassLoader classLoader) throws RepositoryException {
+	public HippoBean getProxy(HippoBean bean) throws RepositoryException {
+		return getProxy(bean, Thread.currentThread().getContextClassLoader());
+	}
+
+	public HippoBean getProxy(HippoBean bean, ClassLoader classLoader)
+			throws RepositoryException {
 		if (bean == null) {
 			throw new IllegalArgumentException("Bean argument is required.");
 		}
 		List<Class<?>> interfaces = getInterfaces(bean);
 		interfaces.add(bean.getClass());
-		return (HippoBean) Proxy.newProxyInstance(classLoader, interfaces.toArray(new Class<?>[interfaces.size()]), new MixinInvocationHandler(bean));
+		return (HippoBean) Proxy.newProxyInstance(classLoader,
+				interfaces.toArray(new Class<?>[interfaces.size()]),
+				new MixinInvocationHandler(bean));
 	}
 
 	private List<Class<?>> getInterfaces(HippoBean bean)
