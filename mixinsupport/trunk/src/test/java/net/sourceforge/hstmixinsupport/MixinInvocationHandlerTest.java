@@ -25,7 +25,5 @@ public class MixinInvocationHandlerTest {
 				new MixinInvocationHandler(new HippoItem()));
 		Assert.assertEquals(true, proxy instanceof CarouselBannerPicker);
 		CarouselBannerPicker carouselPicker = (CarouselBannerPicker) proxy;
-
-		carouselPicker.<String>getBanners();
 	}
 }

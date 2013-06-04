@@ -32,7 +32,7 @@ public class MixinInvocationHandler implements InvocationHandler {
 		if (method.getClass().equals(beanClass)) {
 			result = method.invoke(bean, args);
 		} else {
-			if (args.length == 0) {
+			if (args == null || args.length == 0) {
 				Class<?> returnType = method.getReturnType();
 				String path = getPath(method);
 				if (isPropertyType(returnType)) {
