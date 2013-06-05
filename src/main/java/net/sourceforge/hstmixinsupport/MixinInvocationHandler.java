@@ -1,12 +1,13 @@
 package net.sourceforge.hstmixinsupport;
 
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
+
+import javassist.util.proxy.MethodHandler;
 
 import javax.jcr.Node;
 
@@ -16,31 +17,29 @@ import net.sourceforge.hstmixinsupport.annotations.Path;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirrorBean;
 
-public class MixinInvocationHandler implements InvocationHandler {
+public class MixinInvocationHandler implements MethodHandler {
 
 	private HippoBean bean;
-	private Class<? extends HippoBean> beanClass;
 
 	public MixinInvocationHandler(HippoBean bean) {
 		this.bean = bean;
-		this.beanClass = bean.getClass();
 	}
 
 	@Override
-	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+	public Object invoke(Object self, Method thisMethod, Method proceed, Object[] args) throws Throwable {
 		Object result;
-		if (method.getClass().equals(beanClass)) {
-			result = method.invoke(bean, args);
+		if (proceed != null) {
+			result = thisMethod.invoke(bean, args);
 		} else {
 			if (args == null || args.length == 0) {
-				Class<?> returnType = method.getReturnType();
-				String path = getPath(method);
+				Class<?> returnType = thisMethod.getReturnType();
+				String path = getPath(thisMethod);
 				if (isPropertyType(returnType)) {
 					result = bean.getProperty(path);
 				} else if (bean.getNode().hasNode(path)) {
 					Node node = bean.getNode().getNode(path);
 					if (node.isNodeType("hippo:mirror")) {
-						result = handleHippoMirrorCalls(method, returnType, path);
+						result = handleHippoMirrorCalls(thisMethod, returnType, path);
 					} else {
 						result = handleNoneHippoMirrorCalls(returnType, path);
 					}
@@ -55,6 +54,7 @@ public class MixinInvocationHandler implements InvocationHandler {
 		}
 		return result;
 	}
+
 
 	private Object handleHippoMirrorCalls(Method method, Class<?> returnType, String path) {
 		Object result;
@@ -179,5 +179,7 @@ public class MixinInvocationHandler implements InvocationHandler {
 		}
 		return result;
 	}
+
+	
 
 }
