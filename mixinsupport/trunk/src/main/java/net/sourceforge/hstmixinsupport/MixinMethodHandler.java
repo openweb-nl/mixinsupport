@@ -1,41 +1,43 @@
 package net.sourceforge.hstmixinsupport;
 
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+
+import javassist.util.proxy.MethodHandler;
 
 import javax.jcr.Node;
 
+
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
-public class MixinInvocationHandler extends Handler implements InvocationHandler {
+public class MixinMethodHandler extends Handler implements MethodHandler {
 
-	private Class<? extends HippoBean> beanClass;
+	
 
-	public MixinInvocationHandler(HippoBean bean) {
+	public MixinMethodHandler(HippoBean bean) {
 		super(bean);
-		this.beanClass = bean.getClass();
 	}
 
 	@Override
-	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+	public Object invoke(Object self, Method thisMethod, Method proceed, Object[] args) throws Throwable {
 		Object result;
-		if (method.getClass().equals(beanClass)) {
-			result = method.invoke(bean, args);
+		if (proceed != null) {
+			result = thisMethod.invoke(bean, args);
 		} else {
 			if (args == null || args.length == 0) {
-				Class<?> returnType = method.getReturnType();
-				String path = getPath(method);
+				Class<?> returnType = thisMethod.getReturnType();
+				String path = getPath(thisMethod);
 				if (isPropertyType(returnType)) {
 					result = bean.getProperty(path);
 				} else if (bean.getNode().hasNode(path)) {
 					Node node = bean.getNode().getNode(path);
 					if (node.isNodeType("hippo:mirror")) {
-						result = handleHippoMirrorCalls(method, returnType, path);
+						result = handleHippoMirrorCalls(thisMethod, returnType, path);
 					} else {
 						result = handleNoneHippoMirrorCalls(returnType, path);
 					}
+
 				} else {
-					result = getProperNullValue(method);
+					result = getProperNullValue(thisMethod);
 				}
 
 			} else {

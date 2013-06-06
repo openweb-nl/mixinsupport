@@ -1,6 +1,6 @@
 package net.sourceforge.hstmixinsupport;
 
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,18 +14,15 @@ import org.junit.Test;
 public class MixinInvocationHandlerTest {
 	
 	@Test
-	public void test() throws IllegalArgumentException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	public void test() {
 
 		List<Class<?>> interfaces = new ArrayList<Class<?>>();
 		interfaces.add(HippoBean.class);
 		interfaces.add(CarouselBannerPicker.class);
-		javassist.util.proxy.ProxyFactory factory = new javassist.util.proxy.ProxyFactory();
-		factory.setInterfaces(interfaces.toArray(new Class<?>[interfaces.size()]));
-		factory.setSuperclass(HippoItem.class);
-		HippoBean proxy = (HippoBean) factory.create(new Class<?>[0], new Object[0], new MixinInvocationHandler(new HippoItem()));
-		
+		HippoBean proxy = (HippoBean) Proxy.newProxyInstance(Thread
+				.currentThread().getContextClassLoader(), interfaces
+				.toArray(new Class<?>[interfaces.size()]),
+				new MixinInvocationHandler(new HippoItem()));
 		Assert.assertEquals(true, proxy instanceof CarouselBannerPicker);
-		@SuppressWarnings("unused")
-		CarouselBannerPicker carouselPicker = (CarouselBannerPicker) proxy;
 	}
 }
