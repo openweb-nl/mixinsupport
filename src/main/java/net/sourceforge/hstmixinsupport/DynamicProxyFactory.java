@@ -20,7 +20,7 @@ public class DynamicProxyFactory extends AbstractProxyFactory{
 		}
 		HippoBean result;
 		List<Class<?>> interfaces = getInterfaces(bean);
-		if (interfaces.size() == 0) {
+		if (interfaces.size() != 0) {
 			interfaces.add(HippoBean.class);
 			result = (HippoBean) Proxy.newProxyInstance(classLoader,
 					interfaces.toArray(new Class<?>[interfaces.size()]),
