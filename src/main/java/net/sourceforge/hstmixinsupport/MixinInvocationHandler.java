@@ -18,7 +18,7 @@ public class MixinInvocationHandler extends Handler implements InvocationHandler
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		Object result;
+		Object result = null;
 		if (method.getClass().equals(beanClass)) {
 			result = method.invoke(bean, args);
 		} else {
@@ -34,9 +34,11 @@ public class MixinInvocationHandler extends Handler implements InvocationHandler
 					} else {
 						result = handleNoneHippoMirrorCalls(returnType, path);
 					}
-				} else {
+				} 
+				if (result == null) {
 					result = getProperNullValue(method);
 				}
+				
 
 			} else {
 				throw new IllegalArgumentException("this handler only supports undefined getter methods");
