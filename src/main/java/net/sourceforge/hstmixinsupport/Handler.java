@@ -116,7 +116,7 @@ public class Handler {
 			result = methodName;
 		}
 		if (result.length() > 0) {
-			result = result.substring(0, 1).toUpperCase() + result.substring(1);
+			result = result.substring(0, 1).toLowerCase() + result.substring(1);
 		}
 		return result;
 	}

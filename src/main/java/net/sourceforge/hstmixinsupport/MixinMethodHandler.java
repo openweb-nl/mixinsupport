@@ -19,7 +19,7 @@ public class MixinMethodHandler extends Handler implements MethodHandler {
 
 	@Override
 	public Object invoke(Object self, Method thisMethod, Method proceed, Object[] args) throws Throwable {
-		Object result;
+		Object result = null;
 		if (proceed != null) {
 			result = thisMethod.invoke(bean, args);
 		} else {
@@ -36,13 +36,15 @@ public class MixinMethodHandler extends Handler implements MethodHandler {
 						result = handleNoneHippoMirrorCalls(returnType, path);
 					}
 
-				} else {
+				}
+				if (result == null) {
 					result = getProperNullValue(thisMethod);
 				}
-
 			} else {
 				throw new IllegalArgumentException("this handler only supports undefined getter methods");
 			}
+			
+			
 		}
 		return result;
 	}
