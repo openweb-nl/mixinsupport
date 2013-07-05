@@ -1,7 +1,6 @@
 package net.sourceforge.hstmixinsupport;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
