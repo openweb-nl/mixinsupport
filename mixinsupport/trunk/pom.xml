@@ -106,7 +106,7 @@
 
 	<distributionManagement>
 		<repository>
-			<id>sf-hippo-maven-plugin-repo</id>
+			<id>sf-hippo-hst-mixinsupport-repo</id>
 			<url>svn:http://svn.code.sf.net/p/hstmixinsupport/code/maven2/</url>
 		</repository>
 	</distributionManagement>
