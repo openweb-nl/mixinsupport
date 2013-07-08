@@ -3,7 +3,7 @@
 
 	<groupId>net.sourceforge.hstmixinsupport</groupId>
 	<artifactId>hst-mixin-support</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>HST Mixin Support Module</name>
@@ -99,9 +99,9 @@
 	</licenses>
 
 	<scm>
-		<url>http://hstmixinsupport.sourceforge.net/tags/1.0</url>
-		<connection>scm:svn:https://svn.code.sf.net/p/hstmixinsupport/code/mixinsupport/tags/1.0</connection>
-		<developerConnection>scm:svn:https://svn.code.sf.net/p/hstmixinsupport/code/mixinsupport/tags/1.0</developerConnection>
+		<url>http://hstmixinsupport.sourceforge.net/</url>
+		<connection>scm:svn:https://svn.code.sf.net/p/hstmixinsupport/code/mixinsupport/trunk</connection>
+		<developerConnection>scm:svn:https://svn.code.sf.net/p/hstmixinsupport/code/mixinsupport/trunk</developerConnection>
 	</scm>
 
 	<distributionManagement>
