@@ -16,7 +16,7 @@ public abstract class AbstractProxyFactory {
     private static class SingletonHolder {
 
         private static final MixinInterfaceScannerService INSTANCE = HstServices.getComponentManager().getComponent(
-                MixinInterfaceScannerService.class.getName());
+                MixinInterfaceScannerService.class.getName(), HstMinxinSupportInfo.MODULE_NAME);
 
         private SingletonHolder() {
         }
