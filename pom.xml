@@ -11,26 +11,27 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <hippo.hst.version>2.28.11</hippo.hst.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.javassist</groupId>
       <artifactId>javassist</artifactId>
-      <version>3.17.1-GA</version>
+      <version>3.20.0-GA</version>
     </dependency>
 
     <dependency>
       <groupId>org.onehippo.cms7.hst</groupId>
       <artifactId>hst-content-beans</artifactId>
-      <version>2.26.00</version>
+      <version>${hippo.hst.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.reflections</groupId>
       <artifactId>reflections</artifactId>
-      <version>0.9.8</version>
+      <version>0.9.10</version>
     </dependency>
 
     <dependency>
@@ -64,14 +65,14 @@
     <dependency>
       <groupId>org.onehippo.cms7.hst</groupId>
       <artifactId>hst-commons</artifactId>
-      <version>2.26.00</version>
+      <version>${hippo.hst.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.onehippo.cms7.hst</groupId>
       <artifactId>hst-api</artifactId>
-      <version>2.26.00</version>
+      <version>${hippo.hst.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -104,13 +105,12 @@
       <comments>A business-friendly OSS license</comments>
     </license>
   </licenses>
-
   <scm>
-    <url>http://hstmixinsupport.sourceforge.net/</url>
-    <connection>scm:svn:https://svn.code.sf.net/p/hstmixinsupport/code/mixinsupport/trunk</connection>
-    <developerConnection>scm:svn:https://svn.code.sf.net/p/hstmixinsupport/code/mixinsupport/trunk</developerConnection>
+    <url>https://github.com/openweb-nl/mixinsupport</url>
+    <connection>scm:git:git://github.com:openweb-nl/mixinsupport.git</connection>
+    <developerConnection>scm:git:git@github.com:openweb-nl/mixinsupport.git</developerConnection>
+    <tag>HEAD</tag>
   </scm>
-
   <distributionManagement>
     <repository>
       <id>sf-hippo-hst-mixinsupport-repo</id>
@@ -177,8 +177,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <!-- Create Source Jar -->
