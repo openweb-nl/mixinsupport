@@ -3,7 +3,7 @@
 
   <groupId>net.sourceforge.hstmixinsupport</groupId>
   <artifactId>hst-mixin-support</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <version>10.2.00-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>HST Mixin Support Module</name>
