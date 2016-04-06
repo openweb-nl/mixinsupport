@@ -113,12 +113,12 @@
   </scm>
   <distributionManagement>
     <repository>
-      <id>sf-hippo-hst-mixinsupport-repo</id>
-      <url>svn:https://svn.code.sf.net/p/hstmixinsupport/code/maven2/</url>
+      <id>openweb-maven-releases</id>
+      <url>https://maven.open-web.nl/content/repositories/releases/</url>
     </repository>
     <snapshotRepository>
-      <id>openweb-nexus-snapshots</id>
-      <url>https://nexus.open-web.nl/nexus/content/repositories/snapshots/</url>
+      <id>openweb-maven-snapshots</id>
+      <url>https://maven.open-web.nl/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
