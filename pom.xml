@@ -109,7 +109,6 @@
     <url>https://github.com/openweb-nl/mixinsupport</url>
     <connection>scm:git:git://github.com:openweb-nl/mixinsupport.git</connection>
     <developerConnection>scm:git:git@github.com:openweb-nl/mixinsupport.git</developerConnection>
-    <tag>HEAD</tag>
   </scm>
   <distributionManagement>
     <repository>
@@ -178,6 +177,13 @@
               <version>1.8.1</version>
             </dependency>
           </dependencies>
+          <configuration>
+            <releaseProfiles>release</releaseProfiles>
+            <goals>install deploy</goals>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <preparationGoals>clean install</preparationGoals>
+            <arguments>-DskipTests=true</arguments>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
