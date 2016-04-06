@@ -3,7 +3,7 @@
 
   <groupId>net.sourceforge.hstmixinsupport</groupId>
   <artifactId>hst-mixin-support</artifactId>
-  <version>10.2.00-SNAPSHOT</version>
+  <version>10.2.00</version>
   <packaging>jar</packaging>
 
   <name>HST Mixin Support Module</name>
@@ -109,6 +109,7 @@
     <url>https://github.com/openweb-nl/mixinsupport</url>
     <connection>scm:git:git://github.com:openweb-nl/mixinsupport.git</connection>
     <developerConnection>scm:git:git@github.com:openweb-nl/mixinsupport.git</developerConnection>
+    <tag>hst-mixin-support-10.2.00</tag>
   </scm>
   <distributionManagement>
     <repository>
